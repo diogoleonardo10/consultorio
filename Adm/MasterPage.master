@@ -1,0 +1,273 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="Adm_MasterPage" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sitema de Agendamento de Consultas</title>     
+
+    <!-- responsive para width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="bower_components/morris.js/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    
+    <!-- jQuery 3 -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Morris.js charts -->
+    <script src="bower_components/raphael/raphael.min.js"></script>
+    <script src="bower_components/morris.js/morris.min.js"></script>
+    <!-- Sparkline -->
+    <script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="bower_components/moment/min/moment.min.js"></script>
+    <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <form id="form1" runat="server">
+
+        <div class="wrapper">
+
+            <header class="main-header">
+                <!-- Logo -->
+                <div class="logo">
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+                    <span class="logo-mini">
+                        <b style="color: red;" >ID </b>
+                          </span>
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg">
+                        <b><img src="http://www.pontoid.com.br/images/logo3.png" style="width: 140px;" /> </b>
+                       </span>
+                </div>
+             
+                <!-- Header Navbar: style can be found in header.less -->
+                <nav class="navbar navbar-static-top">
+                    <!-- Sidebar toggle button-->
+                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                    
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png" class="user-image" alt="User Image">
+                                    <span class="hidden-xs">
+                                        <asp:Label runat="server" ID="LabelNomeUsuario"></asp:Label></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- User image -->
+                                    <li class="user-header">
+                                        <img src="https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png" class="img-circle" alt="User Image">
+
+                                        <p>
+                                            <asp:Label runat="server" ID="LabelUsuarioTop"></asp:Label>
+                                            <asp:Label runat="server" ID="LabelEmail"></asp:Label>
+                                            <!--<small>Member since Nov. 2012</small>-->
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <i title="Sair" class="fas fa-sign-out-alt"></i>
+                                    </li>
+                                    <!-- Menu Body -->
+                                   
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="#" class="btn btn-default btn-flat">Editar</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="#" class="btn btn-default btn-flat">Sair da conta</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <!-- Control Sidebar Toggle Button 
+                            <li>
+
+                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                            </li>-->
+                            <li>
+                                <asp:LinkButton ID="IconButtonSair" runat="server" OnClick="IconButtonSair_Click">
+                                    <i class="fas fa-sign-out-alt" title="Sair da conta"></i>
+                                </asp:LinkButton>
+                            </li>
+
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png" class="img-circle" alt="Usuário">
+                        </div>
+                        <div class="pull-left info">
+                            <p>
+                                <asp:Literal ID="LabelUsuario" runat="server"></asp:Literal>
+                            </p>
+                            <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+                        </div>
+                    </div>
+                    <!-- search form -->
+                    <div action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Pesquisar...">
+                            <span class="input-group-btn">
+                                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- /.search form -->
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu" data-widget="tree">
+                        <li class="header">MENU</li>
+                                             
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fas fa-user-tie"></i>&nbsp;<span>Usuários</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="ListUsuario.aspx"><i class="fa fa-users"></i>&nbsp;Listagem de Usuários</a></li>
+                                <li><a href="FormularioUsuario.aspx?Operacao=novo"><i class="fas fa-plus-circle"></i>&nbsp;Novo Usuário</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fas fa-diagnoses"></i>&nbsp;                            
+                                <span>Pacientes</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="ListPaciente.aspx"><i class="fas fa-list"></i>&nbsp;Listagem de Pacientes</a></li>
+                                <li><a href="FormularioPaciente.aspx?Operacao=novo"><i class="fas fa-plus-circle"></i>&nbsp;Cadastrar novo</a></li>
+                               
+                            </ul>
+                        </li>
+
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-hospital-o"></i><span>&nbsp;Clinica</span>                                
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="ListClinica.aspx"><i class="fas fa-list"></i>&nbsp;Listagem de Clinicas</a></li>
+                                <li><a href="FormularioClinica.aspx?Operacao=novo"><i class="fas fa-plus-circle"></i>&nbsp;Nova Clinica</a></li>
+                                 </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fas fa-notes-medical"></i> &nbsp;
+                                
+                                <span>Agendamento</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="ListAgendamentos.aspx"><i class="fas fa-list"></i>&nbsp;Listagem de Agendamentos</a></li>
+                                <li><a href="FormularioAgendamento.aspx?Operacao=novo"><i class="fas fa-plus-circle"></i>&nbsp;Novo Agendamento</a></li>
+                                </ul>
+                        </li>
+                                            
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+
+
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 1.0
+   
+                </div>
+                <strong>Copyright &copy; <%=System.DateTime.Now.Year%> . Developer: Diogo Leonardo Barbosa</strong>.
+ 
+            </footer>
+                        
+            <div class="control-sidebar-bg"></div>
+            
+        </div>
+        <!-- ./wrapper -->
+    </form>
+
+</body>
+</html>
