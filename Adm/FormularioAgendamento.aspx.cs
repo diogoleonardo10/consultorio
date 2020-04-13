@@ -253,7 +253,7 @@ public partial class Adm_FormularioAgendamento : Page
         DataTable TabCondicaoClinica = _Pg.ObterTabela(sqlCondicaoClinica);
         if (TabCondicaoClinica.Rows.Count > 1)
         {
-            Response.Write("Motivo: Existem mais de 20 agendamentos para esta data.");
+            Response.Write("Motivo: Existem mais de 20 agendamentos desta clinica para esta data.");
             PodeCadadstrar = false;
         }
 
