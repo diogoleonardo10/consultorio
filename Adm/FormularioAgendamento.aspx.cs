@@ -225,8 +225,7 @@ public partial class Adm_FormularioAgendamento : Page
 
     protected void Cadastrar()
     {
-        //int num = 0 + Convert.ToInt32(TextBoxNumOS.Text);
-        // string tipo = DropDownListTipo.SelectedValue;
+        bool PodeCadadstrar = true;
         int paciente = Convert.ToInt32(DropDownListSolicitante.SelectedValue);
         int usuario = Convert.ToInt32(DropDownListAtendente.SelectedValue);
         string status = DropDownListStatus.SelectedValue; //Convert.ToInt32(DropDownListResponsavel.SelectedValue);
@@ -237,32 +236,45 @@ public partial class Adm_FormularioAgendamento : Page
             data = DateTime.Now.ToString("dd/MM/yyyy");
 
         DateTime horatemp = Convert.ToDateTime(TextBoxHora.Text);
-        string hora = horatemp.ToString("hh:MM");
+        string hora = horatemp.ToString("hh:mm");
         if (string.IsNullOrEmpty(hora))
-            data = DateTime.Now.ToString("hh:MM");
+            data = DateTime.Now.ToString("hh:mm");
+
+        string sqlCondicaoPaciente = "SELECT agen_id FROM agendamento WHERE agen_paciente=" + paciente + " AND agen_data='" + data + "' AND agen_status='Aguardando atendimento'";
+        DataTable TabCondicaoPaciente = _Pg.ObterTabela(sqlCondicaoPaciente);
+        if (TabCondicaoPaciente.Rows.Count > 0)
+        {
+            Response.Write("Motivo:Já existe agendamento deste paciente para esta data");
+            PodeCadadstrar = false;
+        }
+
+
+        string sqlCondicaoClinica = "SELECT agen_id FROM agendamento WHERE agen_clinica=" + clinica + " AND agen_data='" + data + "' AND excluido=false";
+        DataTable TabCondicaoClinica = _Pg.ObterTabela(sqlCondicaoClinica);
+        if (TabCondicaoClinica.Rows.Count > 1)
+        {
+            Response.Write("Motivo: Existem mais de 20 agendamentos para esta data.");
+            PodeCadadstrar = false;
+        }
+
 
         try
         {
+            if (PodeCadadstrar)
+            {
 
-            string sql = @"INSERT INTO agendamento (agen_paciente, agen_usuario, agen_clinica, agen_status, criado_por, alterado_por, agen_data, agen_hora) VALUES 
+                string sql = @"INSERT INTO agendamento (agen_paciente, agen_usuario, agen_clinica, agen_status, criado_por, alterado_por, agen_data, agen_hora) VALUES 
             (" + paciente + ", " + usuario + ", " + clinica + ",'" + status + "','" + _IDUsuario + "', '" + _IDUsuario + "', '" + data + "', '" + hora + "')";
+                              
+                _Pg.ExecutarSQL(sql);
 
-            //string sql = @"INSERT INTO agendamento (agen_tipo) VALUES (" + num + ")";
-
-            _Pg.ExecutarSQL(sql);
-
-            Response.Redirect("ListAgendamentos.aspx");
-
+                Response.Redirect("ListAgendamentos.aspx");
+            }
         }
         catch (Exception erro)
         {
-            //  string script = "<script type=\"text/javascript\">alert('Algo de errado aconteceu, por favor tente novamente: " + erro.ToString() + "');</script>";
-            //  Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script);
-            //Response.Write("<script language='javascript'>alert('" + erro.Message + "'); </script>");
             Response.Write("O erro esta: " + erro.ToString());
-            //Console.Write(erro.ToString());
 
-            Response.Write(erro.Message);
         }
 
     }
